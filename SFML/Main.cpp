@@ -158,6 +158,8 @@ int main() {
 	fire_balls = rect_enemies = rect_tab = nullptr;
 	START = SCORE = LOST = size_fire = 0;
 
+	// bonus' functions will be represented via using enemy's functions
+	Rectangle* bonus = new Rectangle({20,20},{0,0});
 	Text_class *score_up = new Text_class(intro_font, 20, "-----------------------------", 40, 45);
 	Text_class *score_down = new Text_class(intro_font, 20, "-----------------------------", 40, 70);
 	Text_class *score_text = new Text_class(intro_font, 20, "HIGHSCORE TABLE", 40, 60);
@@ -173,6 +175,9 @@ int main() {
 	ground->setPosition( 400, 680 );
 	used_rect.setPosition( 800, 633 );
 	starting->setFillColor(sf::Color::Yellow);
+	bonus->setPosition(rand() % 820 + 410, 0);
+	bonus->setColor(sf::Color::Cyan);
+	bonus->setEnemy();
 
 	rect_enemies = new Rectangle[10];
 	x = rand() % 50 + 410;
@@ -246,11 +251,13 @@ int main() {
 			starting->draw_to(window);
 		}
 		else if(START == 1 && LOST < 40) {
+			check_bonus(fire_balls, size_fire, bonus, 1, &SCORE);
 			check_killed(fire_balls, size_fire, rect_enemies, 10, &SCORE, &LOST, 1);
 			if (check_rect_enemy(used_rect, rect_enemies, 10))
 				LOST = 40;
 			print_enemies(window, rect_enemies, 10, 1);
 			print_fire(window, fire_balls, size_fire, 1);
+			print_enemies(window, bonus, 1, 1);
 		}
 		else if (LOST == 40) {
 			Text_class *end_main = new Text_class(intro_font, 30, "THANKS FOR THE GAME\nPRESS 'ESCAPE' TO QUIT", 700, 350);

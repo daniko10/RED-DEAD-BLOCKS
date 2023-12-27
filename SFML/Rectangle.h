@@ -27,6 +27,7 @@ public:
 	friend void print_fire(sf::RenderWindow&, Rectangle*, int, int);
 	friend int check_rect_enemy(Rectangle&, Rectangle*, int);
 	friend void check_killed(Rectangle*, int, Rectangle*, int, int*, int*, int);
+	friend void check_bonus(Rectangle*, int, Rectangle*, int, int*);
 private:
 	sf::RectangleShape rect;
 	int enemy_down;
@@ -42,6 +43,7 @@ void print_enemies(sf::RenderWindow&, Rectangle*, int, int);
 void print_fire(sf::RenderWindow&, Rectangle*, int, int);
 void check_killed(Rectangle*, int, Rectangle*, int, int*, int*, int);
 int check_rect_enemy(Rectangle&, Rectangle*, int);
+void check_bonus(Rectangle*, int, Rectangle*, int, int*);
 void change_str(std::string&);
 void fill_highscore(string**, int**, int, string, int);
 void sort_highscore(string**, int**, int);

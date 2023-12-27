@@ -183,6 +183,38 @@ void print_fire(sf::RenderWindow& window, Rectangle* ptr, int size, int var) {
 	}
 }
 
+void check_bonus(Rectangle* balls, int balls_size, Rectangle* bonus, int n, int* score) {
+	for (int i = 0; i < balls_size; i++) {
+		if (balls[i].width_to_avoid > bonus->width_to_avoid) {
+			if ((balls[i].height_to_avoid - bonus->height_to_avoid < 20 && balls[i].height_to_avoid - bonus->height_to_avoid > -20) && balls[i].width_to_avoid - bonus->width_to_avoid < 20 && balls[i].width_to_avoid - bonus->width_to_avoid > -20) {
+				bonus->enemy_down = rand() % 10 + 1;
+				bonus->setPosition(rand()%820 + 410, 0);
+				*score += 10;
+				balls[i].max_height = true;
+				balls[i].height_to_avoid = -10;
+				balls[i].width_to_avoid = 410;
+				balls[i + 1].max_height = true;
+				balls[i + 1].height_to_avoid = -10;
+				balls[i + 1].width_to_avoid = 410;
+				return;
+			}
+		}
+		else {
+			if ((balls[i].height_to_avoid - bonus->height_to_avoid < 10 && balls[i].height_to_avoid - bonus->height_to_avoid > -10) && balls[i].width_to_avoid - bonus->width_to_avoid < 10 && balls[i].width_to_avoid - bonus->width_to_avoid > -10) {
+				bonus->setPosition(rand() % 820 + 410, 0);
+				*score += 10;
+				balls[i].max_height = true;
+				balls[i].height_to_avoid = -10;
+				balls[i].width_to_avoid = 410;
+				balls[i + 1].max_height = true;
+				balls[i + 1].height_to_avoid = -10;
+				balls[i + 1].width_to_avoid = 410;
+				return;
+			}
+		}
+	}
+}
+
 void check_killed(Rectangle* balls, int size1, Rectangle* rects, int size2, int *SCORE, int *LOST, int var) {
 	for (int j = 0; j < size2; j++)
 		if (rects[j].height_to_avoid >= 640)
@@ -190,6 +222,7 @@ void check_killed(Rectangle* balls, int size1, Rectangle* rects, int size2, int 
 	
 	for (int i = 0; i < size1; i++) {
 		for (int j = 0; j < size2; j++) {
+
 			if ((balls[i].width_to_avoid - rects[j].width_to_avoid <= 20 && balls[i].width_to_avoid - rects[j].width_to_avoid >= -20) && (balls[i].height_to_avoid - rects[j].height_to_avoid <= 20 && balls[i].height_to_avoid - rects[j].height_to_avoid >= -20)) {
 				if(var != 1)
 					rects[j].height_to_avoid = 370;
