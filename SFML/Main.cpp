@@ -165,10 +165,10 @@ int main() {
 	Text_class *score_text = new Text_class(intro_font, 20, "HIGHSCORE TABLE", 30, 60);
 	Text_class *starting = new Text_class(intro_font, 30, "PRESS 'W' TO START PLAYING", 640, 45);
 	Text_class *score_now = new Text_class(intro_font, 20, "YOUR SCORE: ", 30, 10);
-	Text_class *input_w = new Text_class(intro_font, 20, "W", 180, 500);
+	Text_class *input_w = new Text_class(intro_font, 20, "W", 175, 500);
 	Text_class *input_a = new Text_class(intro_font, 20, "A", 130, 550);
-	Text_class *input_d = new Text_class(intro_font, 20, "D", 230, 550);
-	Text_class *board = new Text_class(intro_font, 20, "KEYBOARD", 145, 450);
+	Text_class *input_d = new Text_class(intro_font, 20, "D", 220, 550);
+	Text_class *board = new Text_class(intro_font, 20, "KEYBOARD", 140, 460);
 	int checking_0 = 0;
 	int checking = 0;
 	int size_highscore = 0;
