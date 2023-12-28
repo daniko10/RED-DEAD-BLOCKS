@@ -29,6 +29,7 @@ int main() {
 	intro_font.loadFromFile("C:\\Users\\dan-c\\Desktop\\C++\\open-sans-font\\OpenSansBoldItalic-YWD4.ttf");
 	
 	Text_class *intro_text = new Text_class(intro_font, 24, "TYPE IN YOUR NICKNAME", 60, 45);
+	intro_text->setFillColor(sf::Color::Magenta);
 	intro_text->setStyle(sf::Text::Bold);
 
 	string disc;
@@ -47,8 +48,9 @@ int main() {
 	std::string input = "Nickname: ";
 	Text_class *user_input = new Text_class(intro_font, 20, input, 60, 80);
 
-	Text_class *press_enter = new Text_class(intro_font, 14, "PUT IN YOUR NICKNAME AND PRESS 'ENTER'\nYOU NEED TO SCORE 40 POINTS TO PASS", 60, 520);
-	
+	Text_class *press_enter = new Text_class(intro_font, 14, "PUT IN YOUR NICKNAME AND PRESS 'ENTER'\nYOU NEED TO SCORE 40 POINTS TO PASS\nYOUR NICKNAME MUST BE IN RANGE (6,10)", 60, 520);
+	press_enter->setFillColor(sf::Color::Yellow);
+
 	int x = rand() % 50;
 	for (int i = 0; i < 5; i++) {
 		rect_enemies[i].setColor(sf::Color::Red);
@@ -65,6 +67,11 @@ int main() {
 	while (window.isOpen()) {
 		sf::Event event;
 		while (window.pollEvent(event)) {
+			if (input.length() >= 16)
+				user_input->setFillColor(sf::Color::Green);
+			else
+				user_input->setFillColor(sf::Color::White);
+
 			switch (event.type) {
 			case sf::Event::Closed: {
 				window.close();
@@ -81,7 +88,7 @@ int main() {
 			}
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-				if (input.length() >= 18) {
+				if (input.length() >= 16) {
 					START = 1;
 					STOPPED_SHOWING = true;
 				}
